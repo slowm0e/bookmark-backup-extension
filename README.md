@@ -1,6 +1,8 @@
 # Bookmark Backup
 Chromium extension developed for [Helium](https://helium.surf) that auto-backs up your bookmarks whenever they change.
 
+Helium is a browser built for privacy — no account, no sync, no cloud. That means your bookmarks only live on your device with no automatic backup. This extension fixes that without sending your data anywhere you didn't choose.
+
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue)
 ![Helium](https://img.shields.io/badge/Helium-browser-blueviolet)
 ![Chromium](https://img.shields.io/badge/Chromium-compatible-orange)
@@ -17,7 +19,7 @@ Chromium extension developed for [Helium](https://helium.surf) that auto-backs u
 
 **Developed and tested on Helium. Also works on Chrome, Brave, Edge, Vivaldi and any other Chromium-based browser.**
 
-1. Download and unzip this repo
+1. Download and unzip this repo to a permanent location (e.g. `C:\Users\YourName\Scripts\BookmarkBackup\`) — do not delete this folder after installing, Helium needs it to load the extension
 2. In Helium go to `helium://extensions`
 3. Enable **Developer mode** (toggle in the top right)
 4. Click **Load unpacked** and select the unzipped folder
