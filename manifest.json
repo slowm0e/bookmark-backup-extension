@@ -1,0 +1,14 @@
+{
+  "manifest_version": 3,
+  "name": "Bookmark Backup",
+  "version": "1.0",
+  "description": "Automatically backs up your bookmarks when they change",
+  "permissions": ["bookmarks", "downloads", "alarms", "storage"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": "icon.png"
+  }
+}
