@@ -19,7 +19,7 @@ Helium is a browser built for privacy — no account, no sync, no cloud. That me
 
 **Developed and tested on Helium. Also works on Chrome, Brave, Edge, Vivaldi and any other Chromium-based browser.**
 
-1. Download and unzip this repo to a permanent location (e.g. `C:\Users\YourName\Scripts\BookmarkBackup\`) — do not delete this folder after installing, Helium needs it to load the extension
+1. Download and unzip this repo to a permanent location (e.g. `C:\Users\YourName\HeliumBackup\`)
 2. In Helium go to `helium://extensions`
 3. Enable **Developer mode** (toggle in the top right)
 4. Click **Load unpacked** and select the unzipped folder
