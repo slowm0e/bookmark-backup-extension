@@ -102,7 +102,7 @@ function onBookmarkChange() {
   chrome.storage.sync.get({ autoBackup: true }, function(settings) {
     if (!settings.autoBackup) return;
     clearTimeout(debounceTimer);
-    debounceTimer = setTimeout(doBackup, 30000);
+    debounceTimer = setTimeout(doBackup, 15000);
   });
 }
 
