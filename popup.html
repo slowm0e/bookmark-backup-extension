@@ -3,81 +3,41 @@
 <head>
   <meta charset="utf-8">
   <style>
-    body {
-      font-family: sans-serif;
-      width: 220px;
-      padding: 16px;
-      background: #1e1e2e;
-      color: #cdd6f4;
-    }
+    body { font-family: sans-serif; width: 220px; padding: 16px; background: #1e1e2e; color: #cdd6f4; }
     h2 { margin: 0 0 14px 0; font-size: 15px; color: #cba6f7; }
-
-    .toggle-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 8px;
-    }
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
     .toggle-label { font-size: 12px; color: #a6adc8; }
-
     .switch { position: relative; width: 42px; height: 24px; }
     .switch input { opacity: 0; width: 0; height: 0; }
-    .slider {
-      position: absolute; inset: 0;
-      background: #45475a;
-      border-radius: 24px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .slider:before {
-      content: "";
-      position: absolute;
-      width: 18px; height: 18px;
-      left: 3px; top: 3px;
-      background: white;
-      border-radius: 50%;
-      transition: transform 0.2s;
-    }
+    .slider { position: absolute; inset: 0; background: #45475a; border-radius: 24px; cursor: pointer; transition: background 0.2s; }
+    .slider:before { content: ""; position: absolute; width: 18px; height: 18px; left: 3px; top: 3px; background: white; border-radius: 50%; transition: transform 0.2s; }
     input:checked + .slider { background: #a6e3a1; }
     input:checked + .slider:before { transform: translateX(18px); }
-
     .hint { font-size: 10px; color: #a6adc8; margin-bottom: 14px; }
-
-    .keep-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 14px;
-    }
-    input[type=number] {
-      width: 52px;
-      padding: 5px;
-      background: #313244;
-      color: #cdd6f4;
-      border: 1px solid #45475a;
-      border-radius: 6px;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    button {
-      width: 100%;
-      padding: 9px;
-      background: #cba6f7;
-      color: #1e1e2e;
-      border: none;
-      border-radius: 6px;
-      font-size: 13px;
-      font-weight: bold;
-      cursor: pointer;
-    }
+    .keep-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+    input[type=number] { width: 52px; padding: 5px; background: #313244; color: #cdd6f4; border: 1px solid #45475a; border-radius: 6px; font-size: 12px; text-align: center; }
+    hr { border: none; border-top: 1px solid #313244; margin: 12px 0; }
+    button { width: 100%; padding: 9px; background: #cba6f7; color: #1e1e2e; border: none; border-radius: 6px; font-size: 13px; font-weight: bold; cursor: pointer; margin-bottom: 6px; }
     button:hover { background: #b389f5; }
-    #status { font-size: 11px; color: #a6e3a1; text-align: center; margin-top: 10px; }
+    #restoreBtn { background: #45475a; color: #cdd6f4; }
+    #restoreBtn:hover { background: #585b70; }
+    #modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.7); align-items: center; justify-content: center; }
+    #modal.show { display: flex; }
+    #modalBox { background: #1e1e2e; border: 1px solid #45475a; border-radius: 10px; padding: 16px; width: 180px; text-align: center; }
+    #modalBox p { font-size: 12px; color: #a6adc8; margin: 0 0 12px 0; }
+    .modal-btn { width: 100%; padding: 8px; border: none; border-radius: 6px; font-size: 12px; font-weight: bold; cursor: pointer; margin-bottom: 6px; }
+    #replaceBtn { background: #f38ba8; color: #1e1e2e; }
+    #replaceBtn:hover { background: #e06c75; }
+    #mergeBtn { background: #a6e3a1; color: #1e1e2e; }
+    #mergeBtn:hover { background: #88c98a; }
+    #cancelBtn { background: #45475a; color: #cdd6f4; }
+    #cancelBtn:hover { background: #585b70; }
+    #status { font-size: 11px; color: #a6e3a1; text-align: center; margin-top: 6px; }
+    input[type=file] { display: none; }
   </style>
 </head>
 <body>
   <h2>📚 Bookmark Backup</h2>
-
   <div class="toggle-row">
     <span class="toggle-label">Auto-backup on changes</span>
     <label class="switch">
@@ -86,13 +46,23 @@
     </label>
   </div>
   <p class="hint">Backs up automatically a few seconds after you add, remove or edit a bookmark.</p>
-
   <div class="keep-row">
     <span class="toggle-label">Backups to keep</span>
     <input type="number" id="keepCount" min="1" max="50" value="5">
   </div>
-
   <button id="backupBtn">Backup Now</button>
+  <hr>
+  <button id="restoreBtn">🔄 Restore from Backup</button>
+  <input type="file" id="fileInput" accept=".json">
+  <div id="modal">
+    <div id="modalBox">
+      <p><strong style="color:#f38ba8">Replace</strong> deletes all current bookmarks and restores from file.<br><br>
+      <strong style="color:#a6e3a1">Merge</strong> adds the backup on top of existing bookmarks.</p>
+      <button class="modal-btn" id="replaceBtn">Replace All</button>
+      <button class="modal-btn" id="mergeBtn">Merge</button>
+      <button class="modal-btn" id="cancelBtn">Cancel</button>
+    </div>
+  </div>
   <div id="status"></div>
   <script src="popup.js"></script>
 </body>
