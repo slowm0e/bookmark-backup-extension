@@ -5,7 +5,6 @@ Helium is a browser built for privacy — no account, no sync, no cloud. That me
 
 ![License](https://img.shields.io/badge/license-GPL--3.0-blue)
 ![Helium](https://img.shields.io/badge/Helium-browser-blueviolet)
-![Chromium](https://img.shields.io/badge/Chromium-compatible-orange)
 
 ## Features
 - Auto-backup triggered by bookmark changes — not a timer
@@ -17,7 +16,7 @@ Helium is a browser built for privacy — no account, no sync, no cloud. That me
 - Toggle auto-backup on/off without uninstalling
 
 ## Installation
-**Developed and tested on Helium. Also works on Chrome, Brave, Edge, Vivaldi and any other Chromium-based browser.**
+**Developed and tested on Helium. Other Chromium-based browsers may work but are not guaranteed.**
 
 1. Download and unzip this repo to a permanent location (e.g. `C:\Users\YourName\HeliumBackup\`)
 2. In Helium go to `helium://extensions`
@@ -27,7 +26,7 @@ Helium is a browser built for privacy — no account, no sync, no cloud. That me
 ## Usage
 Click the toolbar icon to turn auto-backup on or off, set how many backups to keep, restore from a backup file, or trigger a manual backup.
 
-Backups are saved as `Bookmarks_YYYY-MM-DD.json` in `Downloads/Bookmark Backups/`.
+Backups are saved as `Bookmarks_YYYY-MM-DD_HH-MM.json` in `Downloads/Bookmark Backups/`.
 
 ## Contributing
 Pull requests are welcome. Fork the repo, make your changes and open a PR.
